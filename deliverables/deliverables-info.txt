@@ -1,0 +1,5 @@
+deliverables is to include 3 short screen-capture video (.mp4) or image files (.jpeg, .png).
+
+These files should be added as the project progresses and each should:
+-   show off the completion of a suitable intermediate deliverable as per the Agile methodology. The video or image should show the feature being demonstrated (audio on videos is allowed, but not required - unless audio is an important part of the feature).
+-   be named the same as a Git tag in the project. That tag should point to the commit where the video/image was made.
