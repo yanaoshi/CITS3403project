@@ -2,13 +2,13 @@
 
 Group Project. tbc
 
-**DESCRIPTION:**
+## DESCRIPTION:
 
 - purpose of application
 - design
 - use
 
-**GROUP MEMBERS:**
+### GROUP MEMBERS:
 
 | Student Number | Student Name | GitHub Username |
 | :------------- | :----------: | --------------: |
@@ -17,8 +17,8 @@ Group Project. tbc
 | 22987324       |  Jared Teo   |       jaredjteo |
 | 23154567       |  Sam Choong  |        boongus2 |
 
-**ARCHITECTURE SUMMARY**
+### ARCHITECTURE SUMMARY
 
-**HOW TO LAUNCH APPLICATION**
+### HOW TO LAUNCH APPLICATION
 
-**HOW TO RUN APPLICATION TESTS**
+### HOW TO RUN APPLICATION TESTS
