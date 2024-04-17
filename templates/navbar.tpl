@@ -16,7 +16,9 @@
                   <a class="dropdown-item" href="#">FAQ</a>
                 </div>
                 </li>
-              <a class="nav-link active" aria-current="page" href="#">Request a Sitter</a>
+              <form class="form-inline" action="/request-sitter">
+                <button class="btn btn-success" type="submit">Request a Sitter</button>
+              </form>
               <a class="nav-link active" aria-current="page" href="#">View Requests</a>
           </div>
       </div>
