@@ -1,3 +1,19 @@
 body {
   background-color: blanchedalmond;
 }
+#request-form {
+  padding: 20px;
+  margin: 20px;
+  background-color: #f3f3f3
+}
+.request {
+  padding: 20px;
+  margin: 20px;
+  background-color: #f3f3f3
+}
+.alert {
+  padding: 20px;
+  margin: 5px;
+  color: #970020;
+  background-color: #ffd5de;
+}

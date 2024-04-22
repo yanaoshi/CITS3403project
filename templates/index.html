@@ -1,0 +1,14 @@
+{% extends 'viewrequests.html' %}
+
+{% block title %} Requests {% endblock %}
+
+{% block content %}
+  {% for req in requests %}
+    <div class='request'>
+      <p>{{ req['created'] }}</p>
+      <h4>{{ req['title'] }}</h4>
+      <p>{{ req['content'] }}</p>
+      <a href="{{ url_for('edit', id=req['id']) }}">Edit</a>
+    </div>
+  {% endfor %}
+{% endblock %}
