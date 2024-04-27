@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 class="title">
+    View Requests
+  </h2>
+  {% for req in reqs %}
+    <div class='request'>
+      <h4>{{ req.title }}</h4>
+      <p>{{ req.content }}</p>
+      <p>Posted by: {{ req.poster }}</p>
+      <p>ID: {{ req.id }} </p>
+    {% if req.poster == name %}
+      <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
+    {% endif %}
+    </div>
+  {% endfor %}
+{% endblock %}
