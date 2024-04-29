@@ -1,0 +1,15 @@
+.navbar.navbar-expand-sm {
+  background-color: lightskyblue;
+}
+.navbar.navbar-expand-sm .navbar-brand {
+  color: black;
+}
+.navbar.navbar-expand-sm .nav-link {
+  color: black;
+}
+.navbar.navbar-expand-sm .nav-link:hover {
+  color: grey;
+}
+.navbar.navbar-expand-sm .navbar-toggler-icon {
+  background-color: white;
+}

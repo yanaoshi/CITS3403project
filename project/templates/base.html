@@ -15,55 +15,58 @@
       max-height: 50px; /* Set the maximum height of the logo */
     }
   </style>
-  <title>Welcome to Canine Care!</title>
+  <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/navbar.css') }}/>
+  <title>Canine Care</title>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm navbar-light bg-primary" id="navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ url_for('main.index') }}">
+  <header>
+    <nav class="navbar navbar-expand-sm" id="navbar">
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{{ url_for('main.index') }}">
           <img src="/public/images/logo1.png" alt="Canine Care Logo" class="navbar-logo">
-          Canine Care
+          <img src="{{ url_for('static', filename='images/logo2.png') }}" width="50px" heigh="50px">Canine Care
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
-            aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarID">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="{{ url_for('main.createrequest') }}">Request a Sitter</a>
-                <a class="nav-link active" aria-current="page" href="{{ url_for('main.viewrequests') }}">View Requests</a>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    About Us
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url_for('main.index') }}">Contact Us</a>
-                    <a class="dropdown-item" href="{{ url_for('main.index') }}">FAQ</a>
-                  </div>
-                </li>
-                {% if current_user.is_authenticated %}
-                  <a href="{{ url_for('main.profile') }}" class="nav-link active" aria-current="page">
-                    Profile
-                  </a>
-                {% endif %}
-                {% if not current_user.is_authenticated %}
-                  <a href="{{ url_for('auth.login') }}" class="nav-link active" aria-current="page">
-                    Login
-                  </a>
-                  <a href="{{ url_for('auth.signup') }}" class="nav-link active" aria-current="page">
-                    Sign Up
-                  </a>
-                {% endif %}
-                {% if current_user.is_authenticated %}
-                  <a href="{{ url_for('auth.logout') }}" class="nav-link active" aria-current="page">
-                    Logout
-                  </a>
-                {% endif %}
-            </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+              aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarID">
+              <div class="navbar-nav">
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('main.createrequest') }}">Request a Sitter</a>
+                  <a class="nav-link active" aria-current="page" href="{{ url_for('main.viewrequests') }}">View Requests</a>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      About Us
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <a class="dropdown-item" href="{{ url_for('main.index') }}">Contact Us</a>
+                      <a class="dropdown-item" href="{{ url_for('main.index') }}">FAQ</a>
+                    </div>
+                  </li>
+                  {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('main.profile') }}" class="nav-link active" aria-current="page">
+                      Profile
+                    </a>
+                  {% endif %}
+                  {% if not current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.login') }}" class="nav-link active" aria-current="page">
+                      Login
+                    </a>
+                    <a href="{{ url_for('auth.signup') }}" class="nav-link active" aria-current="page">
+                      Sign Up
+                    </a>
+                  {% endif %}
+                  {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('auth.logout') }}" class="nav-link active" aria-current="page">
+                      Logout
+                    </a>
+                  {% endif %}
+              </div>
+          </div>
         </div>
-      </div>
-  </nav>
+    </nav>
+  </header>
 
   <div class="col-sm-8 container pt-3 my-3">
       {% block content %}

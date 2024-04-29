@@ -4,4 +4,16 @@
 <h1 class="title">
   Welcome, {{ name }}!
 </h1>
+<h3>Your Requests</h3>
+{% for req in reqs %}
+  {% if req.poster == name %}
+    <div class='request'>
+      <h4>{{ req.title }}</h4>
+      <p>{{ req.content }}</p>
+      <p>Posted by: {{ req.poster }}</p>
+      <p>ID: {{ req.id }} </p>
+      <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
+    </div>
+  {% endif %}
+{% endfor %}
 {% endblock %}

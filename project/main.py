@@ -12,7 +12,7 @@ def index():
 @main.route('/profile/')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
+    return render_template('profile.html', reqs=Reqs.query.all(), name=current_user.name)
 
 @main.route('/create-request/', methods=['GET', 'POST'])
 @login_required
