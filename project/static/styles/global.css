@@ -4,7 +4,7 @@ body {
 #request-form {
   padding: 20px;
   margin: 20px;
-  background-color: lightgray
+  background-color: lightgray;
 }
 .request {
   padding: 20px;
@@ -16,4 +16,19 @@ body {
   margin: 5px;
   color: #970020;
   background-color: #ffd5de;
+}
+
+:root {
+  --text-colour: #050315;
+  --background-colour: #a8d7e6;
+  --primary-colour: #f7f7df;
+  --secondary-colour: #f8e9b4;
+  --accent-colour: #2fb5ca;
+}
+
+@font-face {
+  font-family: "Vergilia";
+  src: url("../fonts/Vergilia-mL6aa.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
 }
