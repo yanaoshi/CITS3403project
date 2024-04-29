@@ -11,14 +11,14 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/global.css') }}/>
   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/navbar.css') }}/>
-  <title>Welcome to Canine Care!</title>
+  <title>Canine Care</title>
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-sm" id="navbar">
       <div class="container-fluid">
-          <a class="navbar-brand" href="{{ url_for('main.index') }}">Canine Care</a>
+          <a class="navbar-brand" href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='images/logo2.png') }}" width="50px" heigh="50px">Canine Care</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
               aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
