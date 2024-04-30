@@ -24,18 +24,23 @@ Canine Care - Dogsitting Request Website
 (On Windows):
 
 Create a virtual environment labelled "auth":
+```
 py -m venv auth 
-
+```
 Activate that virtual environment:
-auth\script\activate
-
+```
+auth/scripts/activate
+```
 Install the necessary packages within that environment:
+```
 pip install flask flask-sqlalchemy flask-login
-
+```
 Name the flask app "project":
+```
 $env:FLASK_APP="project"
-
+```
 Run the app in localhost, with debug enabled so changes are made live:
+```
 flask run --debug
-
+```
 ### HOW TO RUN APPLICATION TESTS
