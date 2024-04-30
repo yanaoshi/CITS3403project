@@ -21,6 +21,12 @@
       cols="60"
       >{{ request.form['content'] }}</textarea>
     <br>
+
+    <label for="image">Image</label>
+    <br>
+    <input type="file" name="image" accept="image/*">
+    <br>
+      
     <button type="submit">Submit</button>
   </form>
 {% endblock %}

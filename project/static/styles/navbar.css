@@ -1,8 +1,10 @@
 .navbar.navbar-expand-sm {
-  background-color: lightskyblue;
+  background-color: var(--background-colour);
 }
 .navbar.navbar-expand-sm .navbar-brand {
-  color: black;
+  font-family: "Vergilia";
+  font-size: 1.5em;
+  color: var(--accent-colour);
 }
 .navbar.navbar-expand-sm .nav-link {
   color: black;
