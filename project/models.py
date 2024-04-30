@@ -1,4 +1,5 @@
 from flask_login import UserMixin
+from sqlalchemy import func, TIMESTAMP, text
 from . import db
 
 class User(UserMixin, db.Model):
@@ -13,3 +14,4 @@ class Reqs(db.Model):
     content = db.Column(db.String(1000))
     poster = db.Column(db.String(100))
     image = db.Column(db.String(100), unique = True)
+    time_created = db.Column(TIMESTAMP)
