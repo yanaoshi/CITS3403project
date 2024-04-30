@@ -6,14 +6,14 @@
   </h2>
 
   <div class="request">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
       <label for="title">Edit Title</label>
       <br>
 
       <textarea name="title"
         placeholder="Request title"
         rows="1"
-        cols="25"
+        cols="50"
         >{{ request.form['title'] or req['title'] }}</textarea>
       <br><br>
 
@@ -24,19 +24,30 @@
         rows="15"
         cols="60"
         >{{ request.form['content'] or req['content'] }}</textarea>
-      <br>
+      <hr>
       
-      <label for="image">Image</label>
-      <br>
-      <input type="file" name="image" accept="image/*">
-      <br>
-      
+      {% if req['image'] == None %}
+        <label for="image">Upload an Image</label>
+        <br>
+        <input type="file" name="file" accept="image/*">
+      {% else %}
+        <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
+        <br><br>
+        <label for="image">Upload a New Image - </label>
+        <input type="file" name="file" accept="image/*">
+      {% endif %}
+      <hr>
+
       <button type="submit">Submit</button>
     </form>
     <hr>
     <form action="{{ url_for('main.deleterequest', id=req.id) }}" method="POST">
       <input type="submit" value="Delete"
       onclick="return confirm('Are you sure you want to delete this request?')">
+    </form>
+    <form action="{{ url_for('main.deleteimage', id=req.id) }}" method="POST">
+      <input type="submit" value="Delete Image"
+      onclick="return confirm('Are you sure you want to delete this image?')">
     </form>
   </div>
 {% endblock %}

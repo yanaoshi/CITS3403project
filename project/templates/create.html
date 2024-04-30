@@ -5,7 +5,7 @@
     Create Request
   </h2>
   
-  <form id="request-form" method="POST">
+  <form id="request-form" method="POST" enctype="multipart/form-data">
     <label for="title">Title</label>
     <br>
     <input type="text" name="title"
@@ -20,13 +20,13 @@
       rows="15"
       cols="60"
       >{{ request.form['content'] }}</textarea>
+    <hr>
+    
+    <label for="image">Upload an Image</label>
     <br>
+    <input type="file" name="file" accept="image/*">
+    <hr>
 
-    <label for="image">Image</label>
-    <br>
-    <input type="file" name="image" accept="image/*">
-    <br>
-      
     <button type="submit">Submit</button>
   </form>
 {% endblock %}
