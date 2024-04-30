@@ -11,7 +11,11 @@
       <h4>{{ req.title }}</h4>
       <p>{{ req.content }}</p>
       <p>Posted by: {{ req.poster }}</p>
-      <p>ID: {{ req.id }} </p>
+      {% if req['image'] != None %}
+        <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
+        <br>
+      {% endif %}
+      <p>ID: {{ req.id }}</p>
       <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
     </div>
   {% endif %}
