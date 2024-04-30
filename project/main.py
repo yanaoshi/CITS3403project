@@ -1,6 +1,10 @@
+import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
 from .models import Reqs
+# from .models import Users for use in profile functions
+# import reCaptcha
 from . import db
 
 main = Blueprint('main', __name__)
@@ -26,8 +30,15 @@ def createrequest():
         title = request.form.get('title')
         content = request.form.get('content')
         name = current_user.name
+        image = request.files['file']
 
-        new_req = Reqs(title=title, content=content, poster=name)
+        if image.filename != "":
+          filename = secure_filename(name + '-' + title + '-' + image.filename)
+          image.save(os.path.join('project/static/uploads/', filename))
+        else:
+           filename = None
+
+        new_req = Reqs(title=title, content=content, poster=name, image=filename)
         db.session.add(new_req)
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
@@ -50,6 +61,20 @@ def editrequest(id):
         target.title = title
         target.content = content
         target.name = name
+
+        image = request.files['file']
+        if image.filename != "":
+          # There is a new image uploaded to replace the old one
+          filename = secure_filename(name + '-' + title + '-' + image.filename)
+          image.save(os.path.join('project/static/uploads/', filename))
+          target.image = filename
+        elif target.image != None:
+           # There is no new image, so use the old one
+           target.image = target.image
+        else:
+           # There is no new image or old image
+           filename = None
+
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
     
@@ -61,6 +86,16 @@ def deleterequest(id):
     db.session.delete(target)
     db.session.commit()
     return redirect(url_for('main.viewrequests'))
+
+@main.route('/<int:id>/deleteimage/', methods=['POST'])
+@login_required
+def deleteimage(id):
+   # locate and delete target image in the database and directory
+   target = Reqs.query.filter_by(id=id).first()
+   os.remove(os.path.join('project/static/uploads/', target.image))
+   target.image = None
+   db.session.commit()
+   return redirect(url_for('main.editrequest', id=target.id))
 
 @main.route('/view-requests/')
 @login_required
