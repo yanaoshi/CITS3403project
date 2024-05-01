@@ -1,6 +1,12 @@
 body {
   background-color: white;
 }
+.title,
+p {
+    color: white;
+    margin-bottom: 50px;
+    font-family: 'Roboto', sans-serif; /* Example: Use the Roboto font */
+}
 #request-form {
   padding: 20px;
   margin: 20px;
