@@ -15,3 +15,9 @@
 .navbar.navbar-expand-sm .navbar-toggler-icon {
   background-color: white;
 }
+.navbar-nav {
+  margin-left: auto; 
+}
+.navbar-nav .nav-link {
+  margin-left: 16px;
+}
