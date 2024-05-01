@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from .models import Reqs
+from datetime import datetime
 # from .models import Users for use in profile functions
 # import reCaptcha
 from . import db
@@ -23,7 +24,7 @@ def profile():
 def createrequest():
     # returns the create request page when clicked
     if request.method == 'GET':
-      return render_template('create.html', name=current_user.name)
+        return render_template('create.html', name=current_user.name)
     
     # when the form is filled out, creates a new request under the current user and redirects to view page
     if request.method == 'POST':
@@ -31,6 +32,7 @@ def createrequest():
         content = request.form.get('content')
         name = current_user.name
         image = request.files['file']
+        time_created = datetime.now().replace(microsecond=0)
 
         if image.filename != "":
           filename = secure_filename(name + '-' + title + '-' + image.filename)
@@ -38,7 +40,7 @@ def createrequest():
         else:
            filename = None
 
-        new_req = Reqs(title=title, content=content, poster=name, image=filename)
+        new_req = Reqs(title=title, content=content, poster=name, image=filename, time_created=time_created)
         db.session.add(new_req)
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
@@ -51,7 +53,7 @@ def editrequest(id):
 
     # returns the edit request page when clicked
     if request.method == 'GET':
-      return render_template('edit.html', req=target)
+        return render_template('edit.html', req=target)
     
     # when the form is filled out, edit the existing request in the databse and redirect to view page
     if request.method == 'POST':
@@ -64,16 +66,16 @@ def editrequest(id):
 
         image = request.files['file']
         if image.filename != "":
-          # There is a new image uploaded to replace the old one
-          filename = secure_filename(name + '-' + title + '-' + image.filename)
-          image.save(os.path.join('project/static/uploads/', filename))
-          target.image = filename
+            # There is a new image uploaded to replace the old one
+            filename = secure_filename(name + '-' + title + '-' + image.filename)
+            image.save(os.path.join('project/static/uploads/', filename))
+            target.image = filename
         elif target.image != None:
-           # There is no new image, so use the old one
-           target.image = target.image
+            # There is no new image, so use the old one
+            target.image = target.image
         else:
-           # There is no new image or old image
-           filename = None
+            # There is no new image or old image
+            filename = None
 
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
@@ -81,8 +83,10 @@ def editrequest(id):
 @main.route('/<int:id>/delete', methods=['POST'])
 @login_required
 def deleterequest(id):
-    # locate and delete target request in the database
+    # locate and delete target request in the database, along with its image
     target = Reqs.query.filter_by(id=id).first()
+    if target.image != None:
+      os.remove(os.path.join('project/static/uploads/', target.image))
     db.session.delete(target)
     db.session.commit()
     return redirect(url_for('main.viewrequests'))
@@ -90,14 +94,29 @@ def deleterequest(id):
 @main.route('/<int:id>/deleteimage/', methods=['POST'])
 @login_required
 def deleteimage(id):
-   # locate and delete target image in the database and directory
-   target = Reqs.query.filter_by(id=id).first()
-   os.remove(os.path.join('project/static/uploads/', target.image))
-   target.image = None
-   db.session.commit()
-   return redirect(url_for('main.editrequest', id=target.id))
+    # locate and delete target image in the database and directory
+    target = Reqs.query.filter_by(id=id).first()
+    os.remove(os.path.join('project/static/uploads/', target.image))
+    target.image = None
+    db.session.commit()
+    return redirect(url_for('main.editrequest', id=target.id))
 
-@main.route('/view-requests/')
+@main.route('/view-requests/', methods=['GET', 'POST'])
 @login_required
 def viewrequests():
-    return render_template('view.html', reqs=Reqs.query.all(), name=current_user.name)
+    if request.method == 'GET':
+        return render_template('view.html', reqs=Reqs.query.all(), name=current_user.name)
+    if request.method == 'POST':
+        keywords = request.form.get('search')
+        reqs = Reqs.query.filter(Reqs.title.like('%' + keywords + '%'))
+        reqs = reqs.order_by(Reqs.title).all()
+        return render_template('view.html', reqs=reqs, name=current_user.name)
+
+@main.route('/<string:sorting_method>/sort', methods=['POST'])
+@login_required
+def sortrequests(sorting_method):
+    if sorting_method == 'newest':
+      return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.desc()), name=current_user.name)
+    elif sorting_method == 'oldest':
+      return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.asc()), name=current_user.name)
+  

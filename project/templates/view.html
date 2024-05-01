@@ -4,19 +4,40 @@
   <h2 class="title">
     View Requests
   </h2>
-  {% for req in reqs %}
-    <div class='request'>
-      <h4>{{ req.title }}</h4>
-      <p>{{ req.content }}</p>
-      <p>Posted by: {{ req.poster }}</p>
-    {% if req['image'] != None %}
-      <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
-      <br>
-    {% endif %}
-    <p>ID: {{ req.id }}</p>
-    {% if req.poster == name %}
-      <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
-    {% endif %}
-    </div>
+
+  <form action="{{ url_for('main.sortrequests', sorting_method='newest') }}" method="POST">
+    <input type="submit" value="Sort by Newest" onclick>
+  </form>
+  <form action="{{ url_for('main.sortrequests', sorting_method='oldest') }}" method="POST">
+    <input type="submit" value="Sort by Oldest" onclick>
+  </form>
+
+  <form action="{{ url_for('main.viewrequests') }}" id="search-requests" method="POST">
+    <input type="text" name="search"
+    placeholder="Search requests..."
+    value="{{ request.form['keywords'] }}">
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="container sm">
+    <div class="row">
+    {% for req in reqs %}
+        <div class="col">
+        <div class='request'>
+          <h4>{{ req.title }}</h4>
+          <p>{{ req.content }}</p>
+          {% if req['image'] != None %}
+            <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
+            <br><br>
+          {% endif %}
+          <p>Posted by: {{ req.poster }}</p>
+          <p>{{ req.time_created }}</p>
+          {% if req.poster == name %}
+              <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
+          {% endif %}
+          </div>
+        </div>
   {% endfor %}
+  </div>
+  </div>
 {% endblock %}
