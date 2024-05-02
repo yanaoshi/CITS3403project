@@ -1,27 +1,32 @@
 body {
   background-color: white;
+  font-family: "Vergilia", sans-serif; /* Use custom font */
+  color: var(--text-colour); /* Use custom variable for text color */
 }
 .title,
 p {
     color: white;
     margin-bottom: 50px;
-    font-family: 'Roboto', sans-serif; /* Example: Use the Roboto font */
+    font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
 }
 #request-form {
   padding: 20px;
   margin: 20px;
   background-color: lightgray;
+  border-radius: 15px; /* Add border radius for rounded corners */
 }
 .request {
   padding: 20px;
   margin: 20px;
   background-color: lightgray;
+  border-radius: 15px; /* Add border radius for rounded corners */
 }
 .alert {
   padding: 20px;
   margin: 5px;
   color: #970020;
   background-color: #ffd5de;
+  border-radius: 15px; /* Add border radius for rounded corners */
 }
 
 :root {
