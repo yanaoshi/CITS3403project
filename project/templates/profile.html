@@ -4,7 +4,9 @@
 <h1 class="title">
   Welcome, {{ name }}!
 </h1>
-<h3>Your Requests</h3>
+<h3 class ="title">
+  Your Requests
+</h3>
 {% for req in reqs %}
   {% if req.poster == name %}
     <div class='request'>

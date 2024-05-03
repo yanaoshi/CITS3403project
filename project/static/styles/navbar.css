@@ -7,6 +7,7 @@
   color: var(--accent-colour);
 }
 .navbar.navbar-expand-sm .nav-link {
+  font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia */
   color: black;
 }
 .navbar.navbar-expand-sm .nav-link:hover {

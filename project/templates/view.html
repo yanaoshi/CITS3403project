@@ -19,25 +19,19 @@
     <button type="submit">Search</button>
   </form>
 
-  <div class="container sm">
-    <div class="row">
-    {% for req in reqs %}
-        <div class="col">
-        <div class='request'>
-          <h4>{{ req.title }}</h4>
-          <p>{{ req.content }}</p>
-          {% if req['image'] != None %}
-            <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
-            <br><br>
-          {% endif %}
-          <p>Posted by: {{ req.poster }}</p>
-          <p>{{ req.time_created }}</p>
-          {% if req.poster == name %}
-              <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
-          {% endif %}
-          </div>
-        </div>
+  {% for req in reqs %}
+    <div class='request'>
+      <h4>{{ req.title }}</h4>
+      <p>{{ req.content }}</p>
+      {% if req['image'] != None %}
+        <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
+        <br><br>
+      {% endif %}
+      <p>Posted by: {{ req.poster }}</p>
+      <p>{{ req.time_created }}</p>
+      {% if req.poster == name %}
+          <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
+      {% endif %}
+    </div>
   {% endfor %}
-  </div>
-  </div>
 {% endblock %}
