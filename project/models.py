@@ -22,3 +22,6 @@ class Comment(db.Model):
     req_id = db.Column(db.Integer, db.ForeignKey('reqs.id'))
     commenter_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     time_created = db.Column(TIMESTAMP)
+
+reqs = db.relationship('Reqs', backref=db.backref('comments', lazy=True))
+comments = db.relationship('User', backref=db.backref('comments', lazy=True))
