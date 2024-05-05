@@ -33,8 +33,21 @@
           <p>Posted by: {{ req.poster }}</p>
           <p>{{ req.time_created }}</p>
           {% if req.poster == name %}
+  
               <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
           {% endif %}
+           <!-- Comment form -->
+            <form action="{{ url_for('main.add_comment', req_id=req.id) }}" method="POST">
+              <textarea name="comment_content" placeholder="Respond to the request"></textarea>
+              <button type="submit">Respond</button>
+            </form>
+
+            <!-- Display comments -->
+            <h5>Comments:</h5>
+            {% for comment in req.comments %}
+              <p>{{ comment.content }}</p>
+              <p>{{ comment.time_created }}</p>
+            {% endfor %}
           </div>
         </div>
   {% endfor %}
