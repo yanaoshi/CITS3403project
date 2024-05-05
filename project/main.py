@@ -119,4 +119,25 @@ def sortrequests(sorting_method):
       return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.desc()), name=current_user.name)
     elif sorting_method == 'oldest':
       return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.asc()), name=current_user.name)
+
+@main.route('/<int:req_id>/add-comment', methods=['POST'])
+@login_required
+def add_comment(req_id):
+    if request.method == 'POST':
+        req = Reqs.query.get_or_404(req_id)
+        content = request.form['comment_content']
+        commenter_id = current_user.id
+        new_comment = Comment(content=content, req_id=req_id, commenter_id=commenter_id, time_created=datetime.now())
+        db.session.add(new_comment)
+        db.session.commit()
+        flash('Your comment has been added!', 'success')
+    return redirect(url_for('main.viewrequests'))
+
+@main.route('/view-request/<int:req_id>/comments')
+@login_required
+def view_comments(req_id):
+    req = Reqs.query.get_or_404(req_id)
+    comments = req.comments  # Retrieve comments associated with the request
+    print(comments)  # Print comments to the console for debugging
+    return render_template('view.html', req=req, comments=comments)
   
