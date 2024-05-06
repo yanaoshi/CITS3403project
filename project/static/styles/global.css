@@ -1,10 +1,21 @@
+:root {
+  --text-colour: #050315;
+  --background-colour: #a8d7e6;
+  --primary-colour: #f7f7df;
+  --secondary-colour: #f8e9b4;
+  --accent-colour: #2fb5ca;
+}
+@font-face {
+  font-family: "Vergilia";
+  src: url("../fonts/Vergilia-mL6aa.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100;
+}
 body {
   background-color: white;
-  font-family: "Vergilia", sans-serif; /* Use custom font */
   color: var(--text-colour); /* Use custom variable for text color */
 }
-.title,
-p {
+.title, .info-text {
     color: white;
     margin-bottom: 50px;
     font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
@@ -29,17 +40,11 @@ p {
   border-radius: 15px; /* Add border radius for rounded corners */
 }
 
-:root {
-  --text-colour: #050315;
-  --background-colour: #a8d7e6;
-  --primary-colour: #f7f7df;
-  --secondary-colour: #f8e9b4;
-  --accent-colour: #2fb5ca;
-}
-
-@font-face {
-  font-family: "Vergilia";
-  src: url("../fonts/Vergilia-mL6aa.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 100;
+body {
+  min-height: 120vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url('/static/images/background1.png');
+  background-position: center;
+  background-size: cover;
+  position: relative;
 }
