@@ -2,10 +2,8 @@ import os
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
-from .models import Reqs
+from .models import Reqs, Comment
 from datetime import datetime
-# from .models import Users for use in profile functions
-# import reCaptcha
 from . import db
 
 main = Blueprint('main', __name__)
@@ -124,20 +122,19 @@ def sortrequests(sorting_method):
 @login_required
 def add_comment(req_id):
     if request.method == 'POST':
-        req = Reqs.query.get_or_404(req_id)
-        content = request.form['comment_content']
-        commenter_id = current_user.id
-        new_comment = Comment(content=content, req_id=req_id, commenter_id=commenter_id, time_created=datetime.now())
+        content = request.form.get('comment_content')
+        poster = current_user.name
+        time_created = datetime.now().replace(microsecond=0)
+        new_comment = Comment(content=content, req_id=req_id, poster=poster, time_created=time_created)
         db.session.add(new_comment)
         db.session.commit()
-        flash('Your comment has been added!', 'success')
     return redirect(url_for('main.viewrequests'))
 
-@main.route('/view-request/<int:req_id>/comments')
+@main.route('/<int:id>/delete-comment', methods=['POST'])
 @login_required
-def view_comments(req_id):
-    req = Reqs.query.get_or_404(req_id)
-    comments = req.comments  # Retrieve comments associated with the request
-    print(comments)  # Print comments to the console for debugging
-    return render_template('view.html', req=req, comments=comments)
+def delete_comment(id):
+    target = Comment.query.filter_by(id=id).first()
+    db.session.delete(target)
+    db.session.commit()
+    return redirect(url_for('main.viewrequests'))
   
