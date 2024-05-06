@@ -19,6 +19,9 @@ def create_app():
 
     from .models import User
 
+    with app.app_context():
+      db.create_all()
+
     @login_manager.user_loader
     def load_user(user_id):
         # since the user_id is just the primary key of our user table, use it in the query for the user
