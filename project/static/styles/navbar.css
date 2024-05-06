@@ -8,6 +8,7 @@
 }
 .navbar.navbar-expand-sm .nav-link {
   color: black;
+  font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
 }
 .navbar.navbar-expand-sm .nav-link:hover {
   color: grey;
