@@ -1,33 +1,38 @@
 :root {
-  --text-colour: #050315;
-  --background-colour: #a8d7e6;
-  --primary-colour: #f7f7df;
-  --secondary-colour: #f8e9b4;
-  --accent-colour: #2fb5ca;
+  --text-colour: #4A4545;
+  --background-colour: #FBEEE4;
+  --primary-colour: #C47072;
+  --secondary-colour: #F7C8C1;
+  --accent-colour: #585557;
 }
 @font-face {
-  font-family: "Vergilia";
+  font-family: "Vergilia", sans-serif;
   src: url("../fonts/Vergilia-mL6aa.ttf") format("truetype");
   font-style: normal;
   font-weight: 100;
 }
 body {
-  background-color: white;
+  background-color: #FBEEE4;
   color: var(--text-colour); /* Use custom variable for text color */
 }
 .title, .info-text {
-    color: white;
+    color: #4A4545;
     margin-bottom: 50px;
+    text-align: center;
     font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
 }
 #request-form {
-  padding: 20px;
+  padding: 20px, 50px;
   margin: 20px;
-  background-color: lightgray;
+  background-color: #F3D0B7;
+  color: #5E574D;
   border-radius: 15px; /* Add border radius for rounded corners */
 }
 .request, .login-signup {
-  background-color: lightgray;
+  padding: 20px 50px;
+  margin: 20px;
+  background-color: #F3D0B7;
+  color: white;
   border-radius: 15px; /* Add border radius for rounded corners */
 }
 #request-image {
@@ -36,17 +41,53 @@ body {
   border-radius: 15px;
 }
 .alert {
-  padding: 20px;
+  padding: 20px 50px;
   margin: 5px;
   color: #970020;
   background-color: #ffd5de;
   border-radius: 15px; /* Add border radius for rounded corners */
 }
-body {
-  min-height: 120vh;
+.btn1 {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px; 
+  margin-left: auto;
+  color: white; 
+  font-family: 'Vergilia', sans-serif; 
+  background-color: #C47072; 
+  padding: 20px 50px;
+  border-radius: 25px; 
+  display: inline-block; 
+  text-align: left,center;
+}
+.btn2 {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+  margin-left: auto;
+  color: white; 
+  font-family: 'Vergilia', sans-serif; 
+  background-color: #C47072; 
+  padding: 20px 50px;
+  border-radius: 25px; 
+  display: inline-block;
+  text-align: right, center;
+}
+.background-image {
+  min-height: 40vh;
   width: 100%;
-  background-image: linear-gradient(rgba(4, 9, 30, 0.5), rgba(4, 9, 30, 0.5)), url('/static/images/background1.png');
-  background-position: center;
-  background-size: cover;
+  background-image: url('/static/images/background2.png');
+  background-position: center bottom; /* Position the image at the bottom center */
+  background-size: contain, 50px;
+  background-repeat: no-repeat;
   position: relative;
 }
+.footer {
+  margin-top: 5rem;
+  padding: 1rem;
+  background-color: #F3D0B7; /* Dark background color */
+  color: #4A4545; /* White text color */
+  font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
+  text-align: center;
+}
+
