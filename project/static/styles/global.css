@@ -80,8 +80,6 @@ body {
   background-position: center bottom; /* Position the image at the bottom center */
   background-size: contain, 50px;
   background-repeat: no-repeat;
-  bottom: 0;
-  left: 1; 
   position: relative;
 }
 .footer {
