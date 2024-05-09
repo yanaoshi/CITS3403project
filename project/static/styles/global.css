@@ -6,16 +6,17 @@
   --accent-colour: #585557;
 }
 @font-face {
-  font-family: "Vergilia", sans-serif;
+  font-family: "Vergilia";
   src: url("../fonts/Vergilia-mL6aa.ttf") format("truetype");
   font-style: normal;
   font-weight: 100;
 }
 body {
   background-color: #FBEEE4;
+  font-family: 'Vergilia', sans-serif;
   color: var(--text-colour); /* Use custom variable for text color */
 }
-.title, .info-text {
+.title, .info-text,p {
     color: #4A4545;
     margin-bottom: 50px;
     text-align: center;
