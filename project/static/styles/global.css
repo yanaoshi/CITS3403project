@@ -1,7 +1,8 @@
 :root {
   --text-colour: #4A4545;
   --background-colour: #FBEEE4;
-  --primary-colour: #C47072;
+  --form-colour: #F3D0B7;
+  --button-colour: #C47072;
   --secondary-colour: #F7C8C1;
   --accent-colour: #585557;
 }
@@ -11,69 +12,82 @@
   font-style: normal;
   font-weight: 100;
 }
+
+/* MAIN TEXT */
 body {
-  background-color: #FBEEE4;
-  font-family: 'Vergilia', sans-serif;
-  color: var(--text-colour); /* Use custom variable for text color */
+  background-color: var(--background-colour);
+  color: var(--text-colour);
 }
-.title, .info-text,p {
-    color: #4A4545;
-    margin-bottom: 50px;
+.title, .info-text {
+    color: var(--text-colour);
+    font-family: 'Vergilia', sans-serif;
     text-align: center;
-    font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
+    margin-bottom: 50px;
 }
+#subtitle {
+  color: var(--text-colour);
+  font-family: 'Vergilia', sans-serif;
+}
+
+/* REQUESTS */
 #request-form {
-  padding: 20px, 50px;
-  margin: 20px;
-  background-color: #F3D0B7;
-  color: #5E574D;
-  border-radius: 15px; /* Add border radius for rounded corners */
+  background-color: var(--form-colour);
+  color: var(--text-colour);
+  border-radius: 15px;
 }
-.request, .login-signup {
-  padding: 20px 50px;
-  margin: 20px;
-  background-color: #F3D0B7;
-  color: white;
-  border-radius: 15px; /* Add border radius for rounded corners */
+.request {
+  background-color: var(--form-colour);
+  border-radius: 15px;
 }
 #request-image {
   width: 200px;
   height: 200px;
   border-radius: 15px;
 }
+#time-date {
+  font-size: 12px;
+}
+
+/* LOGIN-SIGNUP */
+.login-signup {
+  padding: 20px 50px;
+  margin: 20px;
+  background-color: var(--form-colour);
+  color: var(--text-colour);
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 15px; /* Add border radius for rounded corners */
+}
 .alert {
   padding: 20px 50px;
   margin: 5px;
   color: #970020;
-  background-color: #ffd5de;
+  background-color: var(--form-colour);
   border-radius: 15px; /* Add border radius for rounded corners */
 }
-.btn1 {
-  display: flex;
-  justify-content: center; 
-  margin-top: 20px; 
-  margin-left: auto;
+
+/* BUTTONS */
+.homepage-btn {
   color: white; 
   font-family: 'Vergilia', sans-serif; 
-  background-color: #C47072; 
-  padding: 20px 50px;
+  background-color: var(--button-colour);
+  padding: 20px 40px;
+  margin: 10px;
   border-radius: 25px; 
-  display: inline-block; 
-  text-align: left,center;
 }
-.btn2 {
-  display: flex;
-  justify-content: center; 
-  margin-top: 20px;
-  margin-left: auto;
+.misc-btn {
   color: white; 
   font-family: 'Vergilia', sans-serif; 
-  background-color: #C47072; 
-  padding: 20px 50px;
+  background-color: var(--button-colour);
+  padding: 10px;
   border-radius: 25px; 
-  display: inline-block;
-  text-align: right, center;
+  border-width: 0px;
 }
+.homepage-btn:hover, .misc-btn:hover {
+  color: black;
+  background-color: var(--secondary-colour);
+}
+
+/* MISC */
 .background-image {
   min-height: 40vh;
   width: 100%;
@@ -86,9 +100,9 @@ body {
 .footer {
   margin-top: 5rem;
   padding: 1rem;
-  background-color: #F3D0B7; /* Dark background color */
-  color: #4A4545; /* White text color */
-  font-family: 'Vergilia', sans-serif; /* Changed the font to Vergilia*/
+  background-color: var(--text-colour);
+  color: var(--form-colour);
+  font-family: 'Vergilia', sans-serif;
   text-align: center;
 }
 

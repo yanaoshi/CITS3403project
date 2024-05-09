@@ -4,29 +4,33 @@
   <h2 class="title">
     Create Request
   </h2>
-  
-  <form id="request-form" method="POST" enctype="multipart/form-data">
-    <label for="title">Title</label>
-    <br>
-    <input type="text" name="title"
-      placeholder="Title"
-      value="{{ request.form['title'] }}">
-    <br>
-
-    <label for="content">Request Content</label>
-    <br>
-    <textarea name="content"
-      placeholder="Content"
-      rows="15"
-      cols="60"
-      >{{ request.form['content'] }}</textarea>
-    <hr>
-    
-    <label for="image">Upload an Image</label>
-    <br>
-    <input type="file" name="file" accept="image/*">
-    <hr>
-
-    <button type="submit">Submit</button>
-  </form>
+  <div class="container" id="request-form">
+    <form method="POST" enctype="multipart/form-data">
+      <div class="row row-cols-1 p-3">
+        <label for="title">Title:</label>
+        <br>
+        <input type="text" name="title"
+          placeholder="Your Title Here"
+          value="{{ request.form['title'] }}">
+      </div>
+      <div class="row row-cols-1 px-3">
+        <label for="content">Request:</label>
+        <br>
+        <textarea name="content"
+          placeholder="Write a catchy request!"
+          rows="8"
+          cols="30"
+          >{{ request.form['content'] }}</textarea>
+      </div>  
+      <hr>
+      <div class="row row-cols-1 px-3">
+        <label for="image">Upload an Image</label>
+        <input type="file" name="file" accept="image/*">
+      </div>
+      <hr>
+      <div class="row row-cols-1 p-3">
+        <button class="misc-btn" type="submit">Post</button>
+    </form>
+    </div>
+  </div>
 {% endblock %}
