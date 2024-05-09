@@ -1,51 +1,68 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
+<h2 class="title">
   Welcome, {{ name }}!
-</h1>
-<h3 class="title">Your Requests</h3>
+</h2>
+<h4 class="title">Your Requests</h3>
 <div class="container">
   {% for req in reqs %}
     {% if req.poster == name %}
-      <div class="row m-row justify-content-between">
-        <div class="col-12">
-          <div class='request'>
-            <h4>{{ req.title }}</h4>
-            <p>{{ req.content }}</p>
-            {% if req['image'] != None %}
-              <img src="{{ url_for('static', filename='uploads/' + req['image']) }}" width="200px" height="200px">
-              <br>
-            {% endif %}
-            <p>Posted by: {{ req.poster }}</p>
-            <p>{{ req.time_created }}</p>
-            <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
-            <hr>
-            <!-- Display comments -->
-            <h5>Comments:</h5>
-            <hr>
-            {% for comment in req.comments %}
-              <b>{{ comment.poster }} says:</b>
-              <p>{{ comment.content }}</p>
-              <p>{{ comment.time_created }}</p>
-              {% if comment.poster == name %}
-                <form action="{{ url_for('main.delete_comment', id=comment.id) }}" method="POST">
-                  <input type="submit" value="Delete"
-                  onclick="return confirm('Are you sure you want to delete this comment?')">
-                </form>
-              {% endif %}
+      <div class="row">
+        <div class="col-11 p-3">
+          <div class="request">
+            <div class="container p-4">
+              <div class="row">
+                {% if req['image'] != None %}
+                <div class="col-sm-3 px-1">
+                    <img src="{{ url_for('static', filename='uploads/' + req['image']) }}"
+                    class="img-fluid" id="request-image">
+                </div>
+                {% endif %}
+                <div class="col-sm-9 px-1">
+                  <div class="col-sm-9 px-1">
+                    <h4 id="subtitle">{{ req.title }}</h4>
+                    <p>{{ req.content }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col align-self-start">
+                  <a href="{{ url_for('main.editrequest', id=req.id) }}">Edit</a>
+                </div>
+                <div class="col align-self-end">
+                  <p style="font-style: italic;">Posted by {{ req.poster }} on {{ req.time_created }}</p>
+                </div>
+              </div>
               <hr>
-            {% endfor %}
-            <br>
-            <!-- Comment form -->
-            <form action="{{ url_for('main.add_comment', req_id=req.id) }}" method="POST">
-              <textarea name="comment_content" placeholder="Respond to the request"></textarea>
-              <button type="submit">Respond</button>
-            </form>
+
+              <!-- Display comments -->
+              <h5 id="subtitle">Comments:</h5>
+              <hr>
+              {% for comment in req.comments %}
+                <b style="display:inline-block">{{ comment.poster }}&ensp;</b>
+                <p id="time-date">{{ comment.time_created }}</p>
+                <p>{{ comment.content }}</p>
+                {% if comment.poster == name %}
+                  <form action="{{ url_for('main.delete_comment', id=comment.id) }}" method="POST">
+                    <input type="submit" value="Delete"
+                    onclick="return confirm('Are you sure you want to delete this comment?')">
+                  </form>
+                {% endif %}
+                <hr>
+              {% endfor %}
+              <br>
+              <!-- Comment form -->
+              <form action="{{ url_for('main.add_comment', req_id=req.id) }}" method="POST">
+                <textarea name="comment_content" placeholder="Write a comment..." rows="1" cols="40"></textarea>
+                <button class="misc-btn" type="submit">Post</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    {% endif %}
-  {% endfor %}
+  {% endif %}
+{% endfor %}
 </div>
 {% endblock %}

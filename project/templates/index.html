@@ -1,16 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 class="title">
-  Welcome to Canine Care!
-</h1>
-<p class="info-text">
-  We run a service where dog owners can post requests for dogsitting and other dog care responsibilities.
-  If you are a petsitter professional, you can respond to those requests.
-  
-  <div class="nav-links-container">
-    <a class="btn1" href="{{ url_for('main.createrequest') }}">Request a Sitter</a>
-    <a class="btn2" href="{{ url_for('main.viewrequests') }}">View Requests</a>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1 class="title">
+      Welcome to Canine Care!
+    </h1>
+  </div>
+  <div class="row justify-content-center">
+    <p class="info-text">
+      We run a service where dog owners can post requests for dogsitting and other dog care responsibilities.
+      If you are a petsitter professional, you can respond to those requests.
+    </p>
+  </div>
+  <div class="row justify-content-center">
+      <a class="homepage-btn" href="{{ url_for('main.createrequest') }}">Request a Sitter</a>
+      <a class="homepage-btn" href="{{ url_for('main.viewrequests') }}">View Requests</a>
+  </div>
 </div>
-</p>
 {% endblock %}
