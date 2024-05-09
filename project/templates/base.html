@@ -12,13 +12,16 @@
   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/global.css') }}/>
   <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='styles/navbar.css') }}/>
   <title>Canine Care</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/logo2.png')}}">
+  
 </head>
 
 <body>
   <header>
     <nav class="navbar navbar-expand-sm" id="navbar">
       <div class="container-fluid">
-          <a class="navbar-brand" href="{{ url_for('main.index') }}"><img src="{{ url_for('static', filename='images/logo2.png') }}" width="50px" height="50px">Canine Care</a>
+          <a class="navbar-brand" href="{{ url_for('main.index') }}"><img
+              src="{{ url_for('static', filename='images/logo2.png') }}" width="50px" height="50px">Canine Care</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
               aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
