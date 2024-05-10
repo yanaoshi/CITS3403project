@@ -43,4 +43,31 @@ Run the app in localhost, with debug enabled so changes are made live:
 ```
 flask run --debug
 ```
+
+
+(On Linux):
+
+Create a virtual environment labelled "auth":
+```
+python3 -m venv auth 
+```
+Activate that virtual environment:
+```
+source auth/bin/activate
+```
+Install the necessary packages within that environment:
+```
+pip install -r requirements.txt
+```
+Name the flask app "project":
+```
+export FLASK_APP="project"
+```
+Run the app in localhost, with debug enabled so changes are made live:
+```
+flask run --debug
+```
+
+
+
 ### HOW TO RUN APPLICATION TESTS
