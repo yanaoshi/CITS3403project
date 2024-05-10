@@ -138,3 +138,12 @@ def delete_comment(id):
     db.session.commit()
     return redirect(url_for('main.viewrequests'))
   
+
+@main.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+@main.route('/faq')
+def faq():
+    return render_template('faq.html')
+            
