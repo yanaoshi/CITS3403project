@@ -24,7 +24,12 @@
               src="{{ url_for('static', filename='images/logo2.png') }}" width="50px" height="50px">Canine Care</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
               aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+              <div class="navbar-toggler-icon" onclick="expandMenu(this)">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+              </div>              
+            
           </button>
           <div class="collapse navbar-collapse" id="navbarID">
               <div class="navbar-nav">
@@ -77,5 +82,12 @@
     </div>
   </footer>
   
+<script>
+  function expandMenu(x) {
+    x.classList.toggle("change");
+  }
+  </script>
+  
 </body>
+
 </html>
