@@ -33,7 +33,7 @@ auth/scripts/activate
 ```
 Install the necessary packages within that environment:
 ```
-pip install flask flask-sqlalchemy flask-login
+pip install -r requirements.txt
 ```
 Name the flask app "project":
 ```
