@@ -40,8 +40,8 @@
                       About Us
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="{{ url_for('main.index') }}">Contact Us</a>
-                      <a class="dropdown-item" href="{{ url_for('main.index') }}">FAQ</a>
+                      <a class="dropdown-item" href="{{ url_for('main.contact') }}">Contact Us</a>
+                      <a class="dropdown-item" href="{{ url_for('main.faq') }}">FAQ</a>
                     </div>
                   </li>
                   {% if current_user.is_authenticated %}
@@ -76,9 +76,27 @@
   <div class="background-image"></div>
 
   <footer class="footer">
-    <div class="container">
-      <p>© 2024 Canine Care | All Rights Reserved. </p>
-      <p><a href="https://github.com/yanaoshi/CITS3403project" target="_blank"><img src="/static/images/githublogo.png" alt="GitHub" width="60px" heigh="60px"></a> </p>
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-4 my-auto">
+          <h5>About Us</h5>
+          <p><a href="{{ url_for('main.contact') }}">Contact Us</a></p>
+          <a href="{{ url_for('main.faq') }}">Frequently Asked Questions</a>
+        </div>
+        <div class="col-md-4 my-auto">
+          <h5>Follow Us</h5>
+          <a href="https://github.com/yanaoshi/CITS3403project" target="_blank">
+            <img src="/static/images/githublogo.png" alt="GitHub" width="40px">
+          </a>
+          <!-- Add more social media icons as needed -->
+        </div>
+        <div class="col-md-4 my-auto">
+          <h5>Legal</h5>
+          <p>Privacy Policy</p>
+          <p>Terms of Use</p>
+        </div>
+      </div>
+      <p class="mt-3">© 2024 Canine Care | All Rights Reserved.</p>
     </div>
   </footer>
   
