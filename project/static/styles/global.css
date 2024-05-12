@@ -56,6 +56,7 @@ body {
   color: var(--text-colour);
   font-family: Arial, Helvetica, sans-serif;
   border-radius: 15px; /* Add border radius for rounded corners */
+  text-align: center;
 }
 .alert {
   padding: 20px 50px;
@@ -63,6 +64,7 @@ body {
   color: #970020;
   background-color: var(--form-colour);
   border-radius: 15px; /* Add border radius for rounded corners */
+  text-align: center;
 }
 
 /* BUTTONS */
@@ -74,7 +76,7 @@ body {
   margin: 10px;
   border-radius: 25px; 
 }
-.misc-btn {
+.misc-btn, .signup-btn, .login-btn {
   color: white; 
   font-family: 'Vergilia', sans-serif; 
   background-color: var(--button-colour);
@@ -82,7 +84,7 @@ body {
   border-radius: 25px; 
   border-width: 0px;
 }
-.homepage-btn:hover, .misc-btn:hover {
+.homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover  {
   color: black;
   background-color: var(--secondary-colour);
 }
