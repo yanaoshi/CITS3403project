@@ -58,11 +58,8 @@ def signup_post():
         flash('Your passwords do not match. Please try again.', category='error')
         return redirect(url_for('auth.signup'))
 
-    hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-    hashed_password2 = generate_password_hash(password2, method='pbkdf2:sha256')
-
     # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-    new_user = User(email=email, name=name, password=hashed_password, password2=hashed_password2)
+    new_user = User(email=email, name=name, password=generate_password_hash(password, method= 'pbkdf2:sha256'))
 
     # add the new user to the database
     db.session.add(new_user)
