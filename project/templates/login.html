@@ -31,8 +31,13 @@
         </label>
       </div>
       <br>
-      <button class="button is-block is-info is-large is-fullwidth">Login</button>
+      <button class = "login-btn" class="button is-block is-info is-large is-fullwidth">Login</button>
     </form>
+
+    <a href="{{ url_for('auth.signup') }}" class="nav-link active" aria-current="page">
+      New here? Click Here To Sign Up
+    </a>
+    
   </div>
 </div>
 {% endblock %}
