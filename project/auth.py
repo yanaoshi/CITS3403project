@@ -44,13 +44,34 @@ def signup_post():
 
     user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
+
     if user: # if a user is found, we want to redirect back to signup page so user can try again
         flash('Email address already exists')
+        return redirect(url_for('auth.signup'))
+
+    #if a user tries to sign in without entering their email, name or password
+    if not email or not name or not password:
+        flash('Please enter your email, name and password')
         return redirect(url_for('auth.signup'))
 
     #Validate the length of the password
     if len(password) < 8:
         flash('Password must be 8 characters or more.', category='error')
+        return redirect(url_for('auth.signup'))
+
+    # Validate if password contains at least one letter
+    if not any(char.isalpha() for char in password):
+        flash('Password must contain at least one letter.', category='error')
+        return redirect(url_for('auth.signup'))
+
+    # Validate if password contains at least an uppercase letter
+    if not any(char.isupper() for char in password):
+        flash('Password must contain at least one capital letter.', category='error')
+        return redirect(url_for('auth.signup'))
+    
+    # Check if the password contains at least one number
+    if not any(char.isdigit() for char in password):
+        flash('Password must contain at least one number.', category='error')
         return redirect(url_for('auth.signup'))
 
     # Ensures that the passwords match
