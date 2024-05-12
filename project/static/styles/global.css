@@ -1,9 +1,9 @@
 :root {
-  --text-colour: #4A4545;
-  --background-colour: #FBEEE4;
-  --form-colour: #F3D0B7;
-  --button-colour: #C47072;
-  --secondary-colour: #F7C8C1;
+  --text-colour: #4a4545;
+  --background-colour: #fbeee4;
+  --form-colour: #f3d0b7;
+  --button-colour: #c47072;
+  --secondary-colour: #f7c8c1;
   --accent-colour: #585557;
 }
 @font-face {
@@ -18,15 +18,16 @@ body {
   background-color: var(--background-colour);
   color: var(--text-colour);
 }
-.title, .info-text {
-    color: var(--text-colour);
-    font-family: 'Vergilia', sans-serif;
-    text-align: center;
-    margin-bottom: 50px;
+.title,
+.info-text {
+  color: var(--text-colour);
+  font-family: "Vergilia", sans-serif;
+  text-align: center;
+  margin-bottom: 50px;
 }
 #subtitle {
   color: var(--text-colour);
-  font-family: 'Vergilia', sans-serif;
+  font-family: "Vergilia", sans-serif;
 }
 
 /* REQUESTS */
@@ -55,46 +56,70 @@ body {
   background-color: var(--form-colour);
   color: var(--text-colour);
   font-family: Arial, Helvetica, sans-serif;
+<<<<<<< Updated upstream
   border-radius: 15px; /* Add border radius for rounded corners */
   text-align: center;
+=======
+  border-radius: 15px;
+>>>>>>> Stashed changes
 }
 .alert {
   padding: 20px 50px;
   margin: 5px;
   color: #970020;
   background-color: var(--form-colour);
+<<<<<<< Updated upstream
   border-radius: 15px; /* Add border radius for rounded corners */
   text-align: center;
+=======
+  border-radius: 15px;
+>>>>>>> Stashed changes
 }
 
 /* BUTTONS */
 .homepage-btn {
-  color: white; 
-  font-family: 'Vergilia', sans-serif; 
+  color: white;
+  font-family: "Vergilia", sans-serif;
   background-color: var(--button-colour);
   padding: 20px 40px;
   margin: 10px;
-  border-radius: 25px; 
+  border-radius: 25px;
 }
+<<<<<<< Updated upstream
 .misc-btn, .signup-btn, .login-btn {
   color: white; 
   font-family: 'Vergilia', sans-serif; 
+=======
+.misc-btn {
+  color: white;
+  font-family: "Vergilia", sans-serif;
+>>>>>>> Stashed changes
   background-color: var(--button-colour);
   padding: 10px;
-  border-radius: 25px; 
+  border-radius: 25px;
   border-width: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+<<<<<<< Updated upstream
 .homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover  {
+=======
+.homepage-btn:hover,
+.misc-btn:hover {
+>>>>>>> Stashed changes
   color: black;
   background-color: var(--secondary-colour);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 /* MISC */
 .background-image {
   min-height: 40vh;
   width: 100%;
-  background-image: url('/static/images/background2.png');
-  background-position: center bottom; /* Position the image at the bottom center */
+  background-image: url("/static/images/background2.png");
+  background-position: center bottom;
   background-size: contain, 50px;
   background-repeat: no-repeat;
   position: relative;
@@ -104,7 +129,12 @@ body {
   padding: 1rem;
   background-color: var(--text-colour);
   color: var(--form-colour);
-  font-family: 'Vergilia', sans-serif;
+  font-family: "Vergilia", sans-serif;
   text-align: center;
 }
 
+h2 {
+  font-family: "Vergilia", sans-serif;
+  color: var(--text-colour);
+  text-align: center;
+}

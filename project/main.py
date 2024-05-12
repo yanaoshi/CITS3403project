@@ -139,9 +139,9 @@ def delete_comment(id):
     return redirect(url_for('main.viewrequests'))
   
 
-@main.route('/contact')
-def contact():
-    return render_template('contact.html')
+@main.route('/about')
+def about():
+    return render_template('about.html')
 
 @main.route('/faq')
 def faq():
