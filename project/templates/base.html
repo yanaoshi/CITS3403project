@@ -37,10 +37,10 @@
                   <a class="nav-link active" aria-current="page" href="{{ url_for('main.viewrequests') }}">View Requests</a>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      About Us
+                      Info
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                      <a class="dropdown-item" href="{{ url_for('main.contact') }}">Contact Us</a>
+                      <a class="dropdown-item" href="{{ url_for('main.about') }}">About Us</a>
                       <a class="dropdown-item" href="{{ url_for('main.faq') }}">FAQ</a>
                     </div>
                   </li>
@@ -79,16 +79,16 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-md-4 my-auto">
-          <h5>About Us</h5>
-          <p><a href="{{ url_for('main.contact') }}">Contact Us</a></p>
-          <a href="{{ url_for('main.faq') }}">Frequently Asked Questions</a>
+          <h5>Info</h5>
+          <p><a href="{{ url_for('main.about') }}">About Us</a></p>
+          <p><a href="{{ url_for('main.faq') }}">Frequently Asked Questions</a></p>
         </div>
         <div class="col-md-4 my-auto">
           <h5>Follow Us</h5>
           <a href="https://github.com/yanaoshi/CITS3403project" target="_blank">
             <img src="/static/images/githublogo.png" alt="GitHub" width="40px">
           </a>
-          <!-- Add more social media icons as needed -->
+
         </div>
         <div class="col-md-4 my-auto">
           <h5>Legal</h5>
