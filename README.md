@@ -29,7 +29,7 @@ py -m venv auth
 ```
 Activate that virtual environment:
 ```
-auth/scripts/activate
+auth\scripts\activate
 ```
 Install the necessary packages within that environment:
 ```
