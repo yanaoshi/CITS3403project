@@ -12,11 +12,19 @@ def login():
     if form.validate_on_submit():
         email = form.email.data
         password = form.password.data
-        remember = True if request.form.get('remember') else False
+        remember = form.remember.data
 
         user = User.query.filter_by(email=email).first()
+        print(f"Trying to log in with email: {email}")
+        print(f"User found: {user}")
 
-        if not user or not user.check_password(password):
+        if not user:
+            print("No user found with this email")
+            flash('Please check your login details and try again.')
+            return redirect(url_for('auth.login'))
+
+        if not user.check_password(password):
+            print("Password check failed")
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login'))
 
@@ -36,18 +44,20 @@ def signup():
         user = User.query.filter_by(email=email).first()
 
         if user:
-            flash('Email address already exists') 
+            flash('Email address already exists')
             return redirect(url_for('auth.signup'))
-        
+
         new_user = User(email=email, name=username)
         new_user.set_password(password)
 
         db.session.add(new_user)
         db.session.commit()
+        flash('Account created successfully!')
 
         return redirect(url_for('auth.login'))
 
     return render_template('signup.html', form=form)
+
 
 @auth.route('/logout')
 @login_required
