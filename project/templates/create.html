@@ -6,31 +6,24 @@
   </h2>
   <div class="container" id="request-form">
     <form method="POST" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
       <div class="row row-cols-1 p-3">
-        <label for="title">Title:</label>
-        <br>
-        <input type="text" name="title"
-          placeholder="Your Title Here"
-          value="{{ request.form['title'] }}">
+        {{ form.title.label }}<br>
+        {{ form.title(size=20) }}
       </div>
       <div class="row row-cols-1 px-3">
-        <label for="content">Request:</label>
-        <br>
-        <textarea name="content"
-          placeholder="Write a catchy request!"
-          rows="8"
-          cols="30"
-          >{{ request.form['content'] }}</textarea>
+        {{ form.content.label }}<br>
+        {{ form.content(rows=8, cols=30) }}
       </div>  
       <hr>
       <div class="row row-cols-1 px-3">
-        <label for="image">Upload an Image</label>
-        <input type="file" name="file" accept="image/*">
+        {{ form.file.label }}<br>
+        {{ form.file() }}
       </div>
       <hr>
       <div class="row row-cols-1 p-3">
-        <button class="misc-btn" type="submit">Post</button>
+        {{ form.submit(class="misc-btn") }}
+      </div>
     </form>
-    </div>
   </div>
 {% endblock %}
