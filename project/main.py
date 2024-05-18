@@ -3,6 +3,7 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from .models import Reqs, Comment
+from .forms import CreateRequestForm, SortForm, SearchForm, CommentForm
 from datetime import datetime
 from . import db
 
@@ -15,76 +16,72 @@ def index():
 @main.route('/profile/')
 @login_required
 def profile():
-    return render_template('profile.html', reqs=Reqs.query.all(), name=current_user.name)
+    comment_form = CommentForm()
+    return render_template('profile.html', reqs=Reqs.query.all(), name=current_user.name, comment_form=comment_form)
 
 @main.route('/create-request/', methods=['GET', 'POST'])
 @login_required
 def createrequest():
-    # returns the create request page when clicked
+    form = CreateRequestForm()
     if request.method == 'GET':
-        return render_template('create.html', name=current_user.name)
+        return render_template('create.html', name=current_user.name, form=form)
     
-    # when the form is filled out, creates a new request under the current user and redirects to view page
-    if request.method == 'POST':
-        title = request.form.get('title')
-        content = request.form.get('content')
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
         name = current_user.name
-        image = request.files['file']
+        image = form.file.data
         time_created = datetime.now().replace(microsecond=0)
 
-        if image.filename != "":
-          filename = secure_filename(name + '-' + title + '-' + image.filename)
-          image.save(os.path.join('project/static/uploads/', filename))
+        if image and image.filename != "":
+            filename = secure_filename(name + '-' + title + '-' + image.filename)
+            image.save(os.path.join('project/static/uploads/', filename))
         else:
-           filename = None
+            filename = None
 
         new_req = Reqs(title=title, content=content, poster=name, image=filename, time_created=time_created)
         db.session.add(new_req)
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
-    
+    return render_template('create.html', form=form)
+
 @main.route('/<int:id>/edit/', methods=['GET', 'POST'])
 @login_required
 def editrequest(id):
-    # search for the target request in the database
     target = Reqs.query.filter_by(id=id).first()
+    form = CreateRequestForm(obj=target)
 
-    # returns the edit request page when clicked
     if request.method == 'GET':
-        return render_template('edit.html', req=target)
+        return render_template('edit.html', req=target, form=form)
     
-    # when the form is filled out, edit the existing request in the databse and redirect to view page
-    if request.method == 'POST':
-        title = request.form.get('title')
-        content = request.form.get('content')
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.content.data
         name = current_user.name
         target.title = title
         target.content = content
         target.name = name
 
-        image = request.files['file']
-        if image.filename != "":
-            # There is a new image uploaded to replace the old one
+        image = form.file.data
+        if image and image.filename != "":
             filename = secure_filename(name + '-' + title + '-' + image.filename)
             image.save(os.path.join('project/static/uploads/', filename))
             target.image = filename
-        elif target.image != None:
-            # There is no new image, so use the old one
+        elif target.image is not None:
             target.image = target.image
         else:
-            # There is no new image or old image
-            filename = None
+            target.image = None
 
         db.session.commit()
         return redirect(url_for('main.viewrequests'))
-    
+    return render_template('edit.html', req=target, form=form)
+
 @main.route('/<int:id>/delete', methods=['POST'])
 @login_required
 def deleterequest(id):
-    # locate and delete target request in the database, along with its image
     target = Reqs.query.filter_by(id=id).first()
-    if target.image != None:
-      os.remove(os.path.join('project/static/uploads/', target.image))
+    if target.image is not None:
+        os.remove(os.path.join('project/static/uploads/', target.image))
     db.session.delete(target)
     db.session.commit()
     return redirect(url_for('main.viewrequests'))
@@ -92,7 +89,6 @@ def deleterequest(id):
 @main.route('/<int:id>/deleteimage/', methods=['POST'])
 @login_required
 def deleteimage(id):
-    # locate and delete target image in the database and directory
     target = Reqs.query.filter_by(id=id).first()
     os.remove(os.path.join('project/static/uploads/', target.image))
     target.image = None
@@ -102,27 +98,32 @@ def deleteimage(id):
 @main.route('/view-requests/', methods=['GET', 'POST'])
 @login_required
 def viewrequests():
-    if request.method == 'GET':
-        return render_template('view.html', reqs=Reqs.query.all(), name=current_user.name)
-    if request.method == 'POST':
-        keywords = request.form.get('search')
-        reqs = Reqs.query.filter(Reqs.title.like('%' + keywords + '%'))
-        reqs = reqs.order_by(Reqs.title).all()
-        return render_template('view.html', reqs=reqs, name=current_user.name)
-
-@main.route('/<string:sorting_method>/sort', methods=['POST'])
-@login_required
-def sortrequests(sorting_method):
-    if sorting_method == 'newest':
-      return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.desc()), name=current_user.name)
-    elif sorting_method == 'oldest':
-      return render_template('view.html', reqs=Reqs.query.order_by(Reqs.time_created.asc()), name=current_user.name)
+    sort_form = SortForm()
+    search_form = SearchForm()
+    comment_form = CommentForm()
+    
+    reqs = Reqs.query
+    
+    if search_form.validate_on_submit() and 'search' in request.form:
+        keywords = search_form.search.data
+        reqs = reqs.filter(Reqs.title.like('%' + keywords + '%'))
+    if sort_form.validate_on_submit() and 'sorting_method' in request.form:
+        sorting_method = sort_form.sorting_method.data
+        if sorting_method == 'newest':
+            reqs = reqs.order_by(Reqs.time_created.desc())
+        elif sorting_method == 'oldest':
+            reqs = reqs.order_by(Reqs.time_created.asc())
+    
+    reqs = reqs.all()
+    
+    return render_template('view.html', reqs=reqs, name=current_user.name, sort_form=sort_form, search_form=search_form, comment_form=comment_form)
 
 @main.route('/<int:req_id>/add-comment', methods=['POST'])
 @login_required
 def add_comment(req_id):
-    if request.method == 'POST':
-        content = request.form.get('comment_content')
+    comment_form = CommentForm()
+    if comment_form.validate_on_submit():
+        content = comment_form.comment_content.data
         poster = current_user.name
         time_created = datetime.now().replace(microsecond=0)
         new_comment = Comment(content=content, req_id=req_id, poster=poster, time_created=time_created)
@@ -137,7 +138,6 @@ def delete_comment(id):
     db.session.delete(target)
     db.session.commit()
     return redirect(url_for('main.viewrequests'))
-  
 
 @main.route('/about')
 def about():
@@ -146,4 +146,3 @@ def about():
 @main.route('/faq')
 def faq():
     return render_template('faq.html')
-            
