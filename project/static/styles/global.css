@@ -95,7 +95,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-
+}
 .homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover  {
   color: black;
   background-color: var(--secondary-colour);
