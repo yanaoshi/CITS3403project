@@ -56,24 +56,16 @@ body {
   background-color: var(--form-colour);
   color: var(--text-colour);
   font-family: Arial, Helvetica, sans-serif;
-<<<<<<< Updated upstream
   border-radius: 15px; /* Add border radius for rounded corners */
   text-align: center;
-=======
-  border-radius: 15px;
->>>>>>> Stashed changes
 }
 .alert {
   padding: 20px 50px;
   margin: 5px;
   color: #970020;
   background-color: var(--form-colour);
-<<<<<<< Updated upstream
   border-radius: 15px; /* Add border radius for rounded corners */
   text-align: center;
-=======
-  border-radius: 15px;
->>>>>>> Stashed changes
 }
 
 /* BUTTONS */
@@ -85,15 +77,9 @@ body {
   margin: 10px;
   border-radius: 25px;
 }
-<<<<<<< Updated upstream
 .misc-btn, .signup-btn, .login-btn {
   color: white; 
   font-family: 'Vergilia', sans-serif; 
-=======
-.misc-btn {
-  color: white;
-  font-family: "Vergilia", sans-serif;
->>>>>>> Stashed changes
   background-color: var(--button-colour);
   padding: 10px;
   border-radius: 25px;
@@ -101,13 +87,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-<<<<<<< Updated upstream
+
 .homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover  {
-=======
-.homepage-btn:hover,
-.misc-btn:hover {
->>>>>>> Stashed changes
   color: black;
   background-color: var(--secondary-colour);
   cursor: pointer;
@@ -133,7 +114,7 @@ body {
   text-align: center;
 }
 
-h2 {
+.h2 {
   font-family: "Vergilia", sans-serif;
   color: var(--text-colour);
   text-align: center;
