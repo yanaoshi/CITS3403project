@@ -28,6 +28,14 @@ body {
 #subtitle {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
+  text-align: center;
+}
+
+#q1, #q2,#q3, #q4, #q5, #q6 {
+  color: var(--text-colour);
+  font-family: "Vergilia", sans-serif;
+  text-align: left;
+  margin-bottom: 50px;
 }
 
 /* REQUESTS */
@@ -114,8 +122,3 @@ body {
   text-align: center;
 }
 
-.h2 {
-  font-family: "Vergilia", sans-serif;
-  color: var(--text-colour);
-  text-align: center;
-}
