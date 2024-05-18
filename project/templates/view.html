@@ -42,8 +42,8 @@
   </div>
 
   <!-- Request Boxes -->
-  <div class="container" id="request-form">
-    {% for req in reqs %}
+  {% for req in reqs %}
+    <div class="container" id="request-form">
       <div class="row mb-4">
         <div class="col-12 p-3">
           <div class='request'>
@@ -101,6 +101,6 @@
           </div>
         </div>
       </div>
-    {% endfor %}
-  </div>
+    </div>
+  {% endfor %}
 {% endblock %}
