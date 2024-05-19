@@ -1,24 +1,18 @@
 {% extends "base.html" %}
+{% block title %}Welcome to Canine Care!{% endblock %}
 
 {% block content %}
 <div>
-    <h2 id="subtitle">Welcome to Canine Care</h2>
+    <h2 id="subtitle" class = "subtitle">Welcome to Canine Care!</h2>
     <br>
-    <p class= "info-text2">At Canine Care, every dog receives loving care, even when you're away. Founded by
-    ardent dog lovers, Canine Care bridges the
-        gap between absent pet owners and enthusiastic pet sitters in your local community. At Canine Care, we understand
-        that your dog is more than just an animal - they're a beloved member of your family.</p>
+    <p class="info-text2">At Canine Care, every dog receives loving care, even when you're away. Founded by ardent dog lovers, Canine Care bridges the gap between absent pet owners and enthusiastic pet sitters in your local community. At Canine Care, we understand that your dog is more than just an animal - they're a beloved member of your family.</p>
     <br>
-    <h5 id="subtitle">Our Mission is simple:</h5>
-    
-    <p class= "info-text2">To provide a safe, reliable, and caring environment for your dog. We're
-    wild about making pet care easy, accessible, and stress-free for pet owners in every corner of the community. Whether
-    you need a last-minute sitter for a quick work-trip, or a reliable buddy for your furry friend during your holidays,
-    <strong>Canine Care is here to help!</strong></p>
+    <h5 id="subheading-1" class="sub-heading1">Our Mission is Simple:</h5>
     <br>
-
-    <div class="misc-btn"><button class="misc-btn" onclick="window.location.href='{{ url_for('main.faq') }}'">See our Frequently Asked
-        Questions</button></div>
-
+    <p class="info-text2">To provide a safe, reliable, and caring environment for your dog. We're wild about making pet care easy, accessible, and stress-free for pet owners in every corner of the community. Whether you need a last-minute sitter for a quick work trip, or a reliable buddy for your furry friend during your holidays, <strong>Canine Care is here to help!</strong></p>
+    <br>
+    <div class="misc-btn">
+        <button class="misc-btn" onclick="window.location.href='{{ url_for('main.faq') }}'">See our Frequently Asked Questions</button>
+    </div>
 </div>
 {% endblock %}
