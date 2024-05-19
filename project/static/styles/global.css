@@ -18,7 +18,8 @@ body {
   background-color: var(--background-colour);
   color: var(--text-colour);
 }
-.title, .info-text {
+.title,
+.info-text {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
   text-align: center;
@@ -34,7 +35,12 @@ body {
   font-family: "Vergilia", sans-serif;
 }
 
-#q1, #q2, #q3, #q4, #q5, #q6 {
+#q1,
+#q2,
+#q3,
+#q4,
+#q5,
+#q6 {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
   text-align: left;
@@ -42,7 +48,8 @@ body {
 }
 
 /* REQUESTS */
-#request-form, #request {
+#request-form,
+#request {
   background-color: var(--form-colour);
   color: var(--text-colour);
   border-radius: 15px;
@@ -75,6 +82,16 @@ body {
   border-radius: 15px; /* Add border radius for rounded corners */
   text-align: center;
 }
+.password-requirements {
+  padding: 20px 50px;
+  margin: 5px;
+  color: var(--text-colour);
+  background-color: var(--form-colour);
+  border-radius: 15px; /* Add border radius for rounded corners */
+  display: flex;
+  justify-content: center; /* Center the text,but align it on the left */
+  text-align: left;
+}
 
 /* BUTTONS */
 .homepage-btn {
@@ -85,9 +102,11 @@ body {
   margin: 10px;
   border-radius: 25px;
 }
-.misc-btn, .signup-btn, .login-btn {
-  color: white; 
-  font-family: 'Vergilia', sans-serif; 
+.misc-btn,
+.signup-btn,
+.login-btn {
+  color: white;
+  font-family: "Vergilia", sans-serif;
   background-color: var(--button-colour);
   padding: 10px;
   border-radius: 25px;
@@ -97,8 +116,8 @@ body {
   align-items: center;
 }
 .req-btn {
-  color: white; 
-  font-family: 'Vergilia', sans-serif; 
+  color: white;
+  font-family: "Vergilia", sans-serif;
   background-color: var(--button-colour);
   padding: 10px;
   border-radius: 25px;
@@ -108,7 +127,11 @@ body {
   align-items: center;
   font-size: 14px;
 }
-.homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover, .req-btn:hover  {
+.homepage-btn:hover,
+.misc-btn:hover,
+.signup-btn:hover,
+.login-btn:hover,
+.req-btn:hover {
   color: black;
   background-color: var(--secondary-colour);
   cursor: pointer;
@@ -160,6 +183,4 @@ body {
 .faq-container {
   max-width: 800px;
   margin: auto;
-};
-
-
+}
