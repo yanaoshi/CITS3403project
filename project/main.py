@@ -13,12 +13,6 @@ main = Blueprint('main', __name__)
 def index():
     return render_template('index.html')
 
-@main.route('/profile/')
-@login_required
-def profile():
-    comment_form = CommentForm()
-    return render_template('profile.html', reqs=Reqs.query.all(), name=current_user.name, comment_form=comment_form)
-
 @main.route('/create-request/', methods=['GET', 'POST'])
 @login_required
 def createrequest():
@@ -94,6 +88,45 @@ def deleteimage(id):
     target.image = None
     db.session.commit()
     return redirect(url_for('main.editrequest', id=target.id))
+
+@main.route('/profile/', defaults={'id': None}, methods=['GET', 'POST'])
+@login_required
+def profile(id):
+    sort_form = SortForm()
+    search_form = SearchForm()
+    comment_form = CommentForm()
+
+    if id:
+        # Viewing a single request
+        req = Reqs.query.get_or_404(id)
+        if comment_form.validate_on_submit():
+            content = comment_form.comment_content.data
+            poster = current_user.name
+            time_created = datetime.now().replace(microsecond=0)
+            new_comment = Comment(content=content, req_id=id, poster=poster, time_created=time_created)
+            db.session.add(new_comment)
+            db.session.commit()
+            flash('Comment added successfully!')
+            return redirect(url_for('main.profile', id=id))
+        req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
+        return render_template('view.html', reqs=[req], single=True, name=current_user.name, comment_form=comment_form)
+    else:
+        # Viewing all requests
+        reqs = Reqs.query.filter_by(poster=current_user.name)       # Only returns reqs belonging to this user
+        if search_form.validate_on_submit() and 'search' in request.form:
+            keywords = search_form.search.data
+            reqs = reqs.filter(Reqs.title.like('%' + keywords + '%'))
+        if sort_form.validate_on_submit() and 'sorting_method' in request.form:
+            sorting_method = sort_form.sorting_method.data
+            if sorting_method == 'newest':
+                reqs = reqs.order_by(Reqs.time_created.desc())
+            elif sorting_method == 'oldest':
+                reqs = reqs.order_by(Reqs.time_created.asc())
+
+        reqs = reqs.all()
+        for req in reqs:
+            req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
+        return render_template('view.html', reqs=reqs, single=False, name=current_user.name, sort_form=sort_form, search_form=search_form, comment_form=comment_form)
 
 @main.route('/view-requests/', defaults={'id': None}, methods=['GET', 'POST'])
 @main.route('/view-requests/<int:id>', methods=['GET', 'POST'])

@@ -18,8 +18,7 @@ body {
   background-color: var(--background-colour);
   color: var(--text-colour);
 }
-.title,
-.info-text {
+.title, .info-text {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
   text-align: center;
@@ -30,8 +29,12 @@ body {
   font-family: "Vergilia", sans-serif;
   text-align: center;
 }
+#req-subtitle {
+  color: var(--text-colour);
+  font-family: "Vergilia", sans-serif;
+}
 
-#q1, #q2,#q3, #q4, #q5, #q6 {
+#q1, #q2, #q3, #q4, #q5, #q6 {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
   text-align: left;
@@ -39,13 +42,9 @@ body {
 }
 
 /* REQUESTS */
-#request-form {
+#request-form, #request {
   background-color: var(--form-colour);
   color: var(--text-colour);
-  border-radius: 15px;
-}
-.request {
-  background-color: var(--form-colour);
   border-radius: 15px;
 }
 #request-image {
@@ -54,7 +53,8 @@ body {
   border-radius: 15px;
 }
 #time-date {
-  font-size: 12px;
+  font-size: 14px;
+  font-style: italic;
 }
 
 /* LOGIN-SIGNUP */
@@ -96,7 +96,19 @@ body {
   justify-content: center;
   align-items: center;
 }
-.homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover  {
+.req-btn {
+  color: white; 
+  font-family: 'Vergilia', sans-serif; 
+  background-color: var(--button-colour);
+  padding: 10px;
+  border-radius: 25px;
+  border-width: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}
+.homepage-btn:hover, .misc-btn:hover, .signup-btn:hover, .login-btn:hover, .req-btn:hover  {
   color: black;
   background-color: var(--secondary-colour);
   cursor: pointer;
