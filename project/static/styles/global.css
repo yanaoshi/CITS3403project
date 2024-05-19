@@ -156,6 +156,11 @@ body {
   font-family: "Vergilia", sans-serif;
   text-align: center;
 }
+.footer-link {
+  text-decoration: none;
+  color: var(--form-colour);
+}
+
 .info-text2 {
   color: var(--text-colour);
   font-family: Arial, Helvetica, sans-serif;
