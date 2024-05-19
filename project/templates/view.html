@@ -80,7 +80,7 @@
               {% endif %}
             </div>
             <div class="col align-self-end text-end">
-              <p style="font-style: italic;">Posted by {{ req.poster }} on {{ req.time_created }}</p>
+              <p style="font-style: italic;">Posted by {{ req.poster }} on {{ req.time_created_formatted }}</p>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
           {% for comment in req.comments %}
           <div class="media mb-3">
             <div class="media-body">
-              <h6 class="mt-0">{{ comment.poster }} <small class="text-muted">{{ comment.time_created }}</small></h6>
+              <h6 class="mt-0">{{ comment.poster }} <small class="text-muted">{{ comment.time_created.strftime('%d %B %I:%M %p') }}</small></h6>
               <p>{{ comment.content }}</p>
               {% if comment.poster == name %}
               <form action="{{ url_for('main.delete_comment', req_id=req.id, id=comment.id) }}" method="POST" class="d-inline">

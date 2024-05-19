@@ -115,6 +115,7 @@ def view_requests(id):
             db.session.commit()
             flash('Comment added successfully!')
             return redirect(url_for('main.view_requests', id=id))
+        req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
         return render_template('view.html', reqs=[req], single=True, name=current_user.name, comment_form=comment_form)
     else:
         # Viewing all requests
@@ -130,6 +131,8 @@ def view_requests(id):
                 reqs = reqs.order_by(Reqs.time_created.asc())
 
         reqs = reqs.all()
+        for req in reqs:
+            req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
         return render_template('view.html', reqs=reqs, single=False, name=current_user.name, sort_form=sort_form, search_form=search_form, comment_form=comment_form)
 
 @main.route('/<int:req_id>/add-comment', methods=['POST'])
