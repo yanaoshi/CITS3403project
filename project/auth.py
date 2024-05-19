@@ -19,12 +19,6 @@ def login():
         print(f"User found: {user}")
 
         if not user:
-            print("No user found with this email")
-            flash('Please check your login details and try again.')
-            return redirect(url_for('auth.login'))
-
-        if not user.check_password(password):
-            print("Password check failed")
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login'))
 
