@@ -4,9 +4,13 @@ Canine Care - Dogsitting Request Website
 
 ## DESCRIPTION:
 
-- purpose of application
-- design
-- use
+#### Purpose:
+- To provide a safe, reliable, and caring environment for your dog. We're wild about making pet care easy, accessible, and stress-free for pet owners in every corner of the community. Whether you need a last-minute sitter for a quick work-trip, or a reliable buddy for your furry friend during your holidays, Canine Care is here to help!
+
+#### Design and Usage:
+- The design of our website follows a simple model - users only need to create one account to both create dogsitting requests and respond to other dogsitting requests.
+- Users can search dogsitting requests for keywords, and sort them in various ways
+- Users can comment and maintain their own posts with edits and deletions
 
 ### GROUP MEMBERS:
 
@@ -18,6 +22,17 @@ Canine Care - Dogsitting Request Website
 | 23154567       |  Sam Choong  |        boongus2 |
 
 ### ARCHITECTURE SUMMARY
+
+- HTML/CSS/JavaScript
+- Bootstrap
+- Python/Flask
+
+- SQLAlchemy
+- LoginManager
+- CSRFProtect
+- WTForms
+- Werkzeug
+- (requirements can be found in requirements.txt)
 
 ### HOW TO LAUNCH FLASK WEB APPLICATION
 
