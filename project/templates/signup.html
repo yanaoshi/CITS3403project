@@ -8,7 +8,7 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
       <div class="notification is-danger">
-        {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+        {{ messages[0] }}
       </div>
     {% endif %}
     {% endwith %}
@@ -16,30 +16,46 @@
       {{ form.hidden_tag() }}
       <div class="field">
         <div class="control">
-          {{ form.username(class="input is-large", placeholder="Name", autofocus="") }}
+          {{ form.email(class="input is-large", placeholder="Your Email", autofocus="") }}
         </div>
       </div>
-
       <div class="field">
         <div class="control">
-          {{ form.email(class="input is-large", placeholder="Email", autofocus="") }}
+          {{ form.username(class="input is-large", placeholder="Your Username") }}
         </div>
       </div>
-
       <div class="field">
         <div class="control">
-          {{ form.password(class="input is-large", placeholder="Password") }}
+          {{ form.password(class="input is-large", placeholder="Your Password") }}
         </div>
       </div>
-
       <div class="field">
         <div class="control">
           {{ form.confirm_password(class="input is-large", placeholder="Confirm Password") }}
         </div>
       </div>
-
+      <div class="field">
+        <div class="control">
+          {% if form.email.errors %}
+            <p class="help is-danger">{{ form.email.errors[0] }}</p>
+          {% endif %}
+          {% if form.username.errors %}
+            <p class="help is-danger">{{ form.username.errors[0] }}</p>
+          {% endif %}
+          {% if form.password.errors %}
+            <p class="help is-danger">{{ form.password.errors[0] }}</p>
+          {% endif %}
+          {% if form.confirm_password.errors %}
+            <p class="help is-danger">{{ form.confirm_password.errors[0] }}</p>
+          {% endif %}
+        </div>
+      </div>
       <br>
-      {{ form.submit(class="button is-block is-info is-large is-fullwidth") }}
+      <div class="field">
+        <div class="control">
+          {{ form.submit(class="button is-block is-info is-large is-fullwidth") }}
+        </div>
+      </div>
     </form>
   </div>
 </div>
