@@ -91,4 +91,6 @@ Name the flask app "project":
 export FLASK_APP="project"
 ```
 Run the test:
+```
 pytest
+```
