@@ -7,4 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
             answer.style.display = (answer.style.display === 'block') ? 'none' : 'block';
         });
     });
+
+    var faqButton = document.getElementById('faq-button');
+    if (faqButton) {
+        faqButton.addEventListener('click', function() {
+            window.location.href = "/faq"; // Update the URL to the FAQ page
+        });
+    }
 });
