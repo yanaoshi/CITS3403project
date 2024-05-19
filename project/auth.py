@@ -15,8 +15,6 @@ def login():
         remember = form.remember.data
 
         user = User.query.filter_by(email=email).first()
-        print(f"Trying to log in with email: {email}")
-        print(f"User found: {user}")
 
         if not user:
             flash('Please check your login details and try again.')
