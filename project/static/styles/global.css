@@ -24,7 +24,7 @@ body {
   text-align: center;
   margin-bottom: 50px;
 }
-#subtitle {
+.subtitle {
   color: var(--text-colour);
   font-family: "Vergilia", sans-serif;
   text-align: center;

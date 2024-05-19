@@ -109,7 +109,7 @@ def profile(id):
             flash('Comment added successfully!')
             return redirect(url_for('main.profile', id=id))
         req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
-        return render_template('view.html', reqs=[req], single=True, name=current_user.name, comment_form=comment_form)
+        return render_template('profile.html', reqs=[req], single=True, name=current_user.name, comment_form=comment_form)
     else:
         # Viewing all requests
         reqs = Reqs.query.filter_by(poster=current_user.name)       # Only returns reqs belonging to this user
@@ -126,7 +126,7 @@ def profile(id):
         reqs = reqs.all()
         for req in reqs:
             req.time_created_formatted = req.time_created.strftime('%d %B %I:%M %p')
-        return render_template('view.html', reqs=reqs, single=False, name=current_user.name, sort_form=sort_form, search_form=search_form, comment_form=comment_form)
+        return render_template('profile.html', reqs=reqs, single=False, name=current_user.name, sort_form=sort_form, search_form=search_form, comment_form=comment_form)
 
 @main.route('/view-requests/', defaults={'id': None}, methods=['GET', 'POST'])
 @main.route('/view-requests/<int:id>', methods=['GET', 'POST'])
