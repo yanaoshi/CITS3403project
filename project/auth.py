@@ -17,7 +17,6 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if not user:
-            print("No user found with this email")
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login'))
 
