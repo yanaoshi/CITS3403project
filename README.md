@@ -32,6 +32,7 @@ Canine Care - Dogsitting Request Website
 - CSRFProtect
 - WTForms
 - Werkzeug
+- (requirements can be found in requirements.txt)
 
 ### HOW TO LAUNCH FLASK WEB APPLICATION
 
